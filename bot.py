@@ -24,8 +24,12 @@ async def start_cmd(message: Message):
 	user_channel_status = await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=user_id)
 
 	if user_channel_status["status"] != 'left':
-		await message.answer("Вопрос получен ✅ после проверки он будет опубликован")
-		await bot.send_message(ADMIN_ID, text=message.text)
+	    await message.answer("Вопрос получен ✅ после проверки он будет опубликован")
+    	try:
+	    	await bot.send_message(ADMIN_ID, text=message.text)
+	    	await bot.send_message(-1002056159992, text=message.text)
+    	except Exception as e:
+	    	pass
 
 
 if __name__ == '__main__':
